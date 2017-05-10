@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.prime.com.tr/ui" >
+    <h:head>
+
+        <title>Gerenciador de Livros</title>
+        <link type="text/css" rel="stylesheet" href="dot-luv/skin.css"/>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="left" width="200" header="Atividades" resizable="true" closable="true" collapsible="true">
+                <h:form prependId="false">
+                    <p:commandLink value="Novo Livro" actionListener="#{pessoaBean.posicaoInicial}" update="infosLivro" oncomplete="dialogGerLivro.show()"/>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <h1>Gerenciador de Livros</h1>
+                <br/>
+                <h:form prependId="false">
+                    <p:dataTable id="tabela" var="pessoa" value="#{pessoaBean.pessoas}">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Título"/>
+                            </f:facet>
+                            <h:outputText value="#{pessoa.nome}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Autor"/>
+                            </f:facet>
+                            <h:outputText value="#{pessoa.endereco}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+</html>

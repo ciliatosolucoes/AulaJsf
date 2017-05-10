@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+
+        <h:form >
+            <h:commandButton value="Voltar" action="index.xhtml" />
+        </h:form>
+
+        <h:form>
+            <fieldset style="width: 350px">
+                <legend>Pessoas</legend>
+                <h:dataTable value="#{pessoaBean.pessoas}" var="c" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cod." />
+                        </f:facet>
+                        <h:outputText value="#{c.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Nome" /></f:facet>
+                        <h:outputText value="#{c.nome}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Endereço" /></f:facet>
+                        <h:outputText value="#{c.endereco}" />
+                    </h:column>
+
+                    <h:column>
+                        <h:commandButton value="Selecionar" actionListener="#{pessoaBean.selecionar}">
+                            <f:attribute name="codigo" value="#{c.id}" />
+
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </fieldset>
+        </h:form>
+        <h:form >
+
+
+
+
+            <fieldset style="width: 350px">
+                <legend>Novo Pessoa</legend>
+                <h:commandButton value="Inserir" action="#{pessoaBean.novo()}" accesskey="n">
+
+                </h:commandButton>
+
+            </fieldset>
+
+            <h:form id="dadosPessoa" rendered="#{pessoaBean.telaInserir}">
+
+
+                <fieldset style="width: 370px" id="Inserir" >
+                    <legend>Dados do pessoa</legend>
+                    <h:panelGrid columns="4" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{pessoaBean.pessoa.nome}" />
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{pessoaBean.pessoa.endereco}" />
+                        
+
+                        <h:commandButton value="Gravar" action="#{pessoaBean.gravar()}" />
+
+                        <h:commandButton value="Remover" action="#{pessoaBean.remover()}" 
+                                         rendered="#{pessoaBean.pessoa.id > 0}" />
+                        <h:commandButton value="Cancelar" action="#{pessoaBean.posicaoInicial()}" accesskey="c"/>
+                    </h:panelGrid>
+                </fieldset>
+            </h:form>
+        </h:form>
+    </body>
+</html>
