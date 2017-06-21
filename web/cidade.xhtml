@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Aula Jsf - Cidades</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:commandButton value="Voltar" action="index.xhtml" />
+        </h:form>
+
+        <h:form>
+            <fieldset style="width: 350px;">
+                <legend>Cidades</legend>
+                <h:dataTable value="#{cidadeBean.cidades}" var="c" border="1" >
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Id" /></f:facet>
+                        <h:outputText value="#{c.ID}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Descrição" /></f:facet>
+                        <h:outputText value="#{c.descricao}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="UF" /></f:facet>
+                        <h:outputText value="#{c.uf}" />
+                    </h:column>
+                </h:dataTable>
+            </fieldset>
+        </h:form>
+        <h:form>
+            <fieldset style="width: 350px;">
+                <legend> Novo </legend>
+                <h:commandButton value="Inserir" action="#{cidadeBean.novo()}"
+                                 accesskey="n" />
+            </fieldset>
+        </h:form>
+
+        <h:form id="dadosCidade" rendered="#{cidadeBean.telaInserir}">
+            <fieldset style="width:350px;" id="inserir">
+                <legend>Dados da Cidade</legend>
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Descrição" />
+                    <h:inputText value="#{cidadeBean.cidade.descricao}"/>
+                  
+                    <h:outputText value="UF"/>
+                    <h:selectOneMenu value="#{cidadeBean.cidade.uf}">
+                        <f:selectItems value="#{cidadeBean.ufs}" var="u"
+                                  itemLabel="#{u.descricao}"
+                                  itemValue="#{u.sigla}"
+                                  
+                                  />
+                        
+                    </h:selectOneMenu>
+                    
+                    
+                     
+
+                    <h:commandButton value="Gravar" action="#{cidadeBean.gravar()}" />
+                    <h:commandButton value="Remover" action ="#{cidadeBean.remover()}" 
+                                     rendered="#{cidadeBean.cidade.ID > 0}" />
+                    <h:commandButton value="Cancelar" action="#{cidadeBean.posicaoInicial()}"
+                                     accesskey="can" />
+          </h:panelGrid>
+                
+            </fieldset>
+        </h:form>
+    </h:body>
+</html>
